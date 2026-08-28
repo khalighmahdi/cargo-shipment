@@ -50,7 +50,9 @@ android {
         "META-INF/NOTICE",
         "META-INF/NOTICE.txt",
         "META-INF/NOTICE.md",
-        "META-INF/LICENSE.md"
+        "META-INF/LICENSE.md",
+        "META-INF/io.netty.versions.properties",
+        "META-INF/io.netty.versions"
       )
     )
   }
