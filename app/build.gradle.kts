@@ -1,5 +1,3 @@
-import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesStrategy
-
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.compose)
@@ -7,7 +5,6 @@ plugins {
   alias(libs.plugins.hilt)
   alias(libs.plugins.roborazzi)
   alias(libs.plugins.secrets)
-  alias(libs.plugins.google.services)
 }
 
 android {
@@ -63,13 +60,8 @@ secrets {
   defaultPropertiesFileName = ".env.example"
 }
 
-googleServices {
-  missingGoogleServicesStrategy = MissingGoogleServicesStrategy.WARN
-}
-
 dependencies {
   implementation(platform(libs.androidx.compose.bom))
-  implementation(platform(libs.firebase.bom))
   implementation(libs.accompanist.permissions)
   implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.compose.material.icons.core)
@@ -99,7 +91,7 @@ dependencies {
   implementation("io.ktor:ktor-server-content-negotiation:$ktor_version")
   implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 
-  // Lightweight CSV/Text export (replaces Apache POI)
+  // CSV export
   implementation("com.opencsv:opencsv:5.9")
 
   implementation(libs.coil.compose)
