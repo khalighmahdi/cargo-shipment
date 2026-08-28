@@ -3,7 +3,7 @@ import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesS
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.compose)
-  id("org.jetbrains.kotlin.kapt")
+  kotlin("kapt")
   id("com.google.dagger.hilt.android")
   alias(libs.plugins.roborazzi)
   alias(libs.plugins.secrets)
