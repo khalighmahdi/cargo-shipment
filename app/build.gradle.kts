@@ -3,7 +3,7 @@ import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesS
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.compose)
-  alias(libs.plugins.google.devtools.ksp)
+  id("kotlin-kapt")
   id("com.google.dagger.hilt.android")
   alias(libs.plugins.roborazzi)
   alias(libs.plugins.secrets)
@@ -102,7 +102,7 @@ dependencies {
   
   // Hilt
   implementation("com.google.dagger:hilt-android:2.53.1")
-  ksp("com.google.dagger:hilt-android-compiler:2.53.1")
+  kapt("com.google.dagger:hilt-android-compiler:2.53.1")
   implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
   // Ktor for Local Network Sharing
@@ -144,6 +144,6 @@ dependencies {
   androidTestImplementation(libs.androidx.runner)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
   debugImplementation(libs.androidx.compose.ui.tooling)
-  "ksp"(libs.androidx.room.compiler)
-  "ksp"(libs.moshi.kotlin.codegen)
+  kapt(libs.androidx.room.compiler)
+  kapt(libs.moshi.kotlin.codegen)
 }
