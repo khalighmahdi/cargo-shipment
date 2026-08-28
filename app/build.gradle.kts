@@ -102,7 +102,7 @@ dependencies {
   
   // Hilt
   implementation("com.google.dagger:hilt-android:2.53.1")
-  kapt("com.google.dagger:hilt-android-compiler:2.53.1")
+  add("kapt", "com.google.dagger:hilt-android-compiler:2.53.1")
   implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
   // Ktor for Local Network Sharing
@@ -144,6 +144,6 @@ dependencies {
   androidTestImplementation(libs.androidx.runner)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
   debugImplementation(libs.androidx.compose.ui.tooling)
-  kapt(libs.androidx.room.compiler)
-  kapt(libs.moshi.kotlin.codegen)
+  add("kapt", libs.androidx.room.compiler)
+  add("kapt", libs.moshi.kotlin.codegen)
 }
