@@ -1,0 +1,6 @@
+{
+  "name": "Cargo Shipment",
+  "description": "Persian-calendar based cargo shipment manager with local database persistence and cargo image registration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
