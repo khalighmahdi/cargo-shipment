@@ -52,8 +52,8 @@ android {
     }
   }
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
   buildFeatures {
     compose = true
@@ -101,8 +101,8 @@ dependencies {
   implementation(libs.androidx.room.runtime)
   
   // Hilt
-  implementation("com.google.dagger:hilt-android:2.51.1")
-  ksp("com.google.dagger:hilt-android-compiler:2.51.1")
+  implementation("com.google.dagger:hilt-android:2.53.1")
+  ksp("com.google.dagger:hilt-android-compiler:2.53.1")
   implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
   // Ktor for Local Network Sharing
