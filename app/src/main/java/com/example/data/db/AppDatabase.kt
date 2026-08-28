@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.data.dao.ShipmentDao
 import com.example.data.entity.Shipment
 
-@Database(entities = [Shipment::class], version = 2, exportSchema = false)
+@Database(entities = [Shipment::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun shipmentDao(): ShipmentDao
 
@@ -25,6 +25,13 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        // Migration from version 2 to 3: Add destination column
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE Shipments ADD COLUMN destination TEXT NOT NULL DEFAULT ''")
+            }
+        }
+
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -32,7 +39,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "cargo_shipment_database"
                 )
-                .addMigrations(MIGRATION_1_2)
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                 .build()
                 INSTANCE = instance
                 instance

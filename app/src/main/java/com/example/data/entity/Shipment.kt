@@ -10,6 +10,7 @@ data class Shipment(
     val cargoDescription: String,
     val senderName: String,
     val receiverName: String,
+    val destination: String,
     val sentBy: String,
     val jalaliYear: Int,
     val jalaliMonth: Int,

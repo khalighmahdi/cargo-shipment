@@ -58,7 +58,7 @@ object ExportUtil {
 
             // Header row
             val headers = listOf(
-                "ID", "Cargo Description", "Sender", "Receiver",
+                "ID", "Cargo Description", "Sender", "Receiver", "Destination",
                 "Sent By", "Jalali Date", "Notes", "Status", "Created At"
             )
             val headerRow = sheet.createRow(0)
@@ -90,22 +90,26 @@ object ExportUtil {
                     cellStyle = dataStyle
                 }
                 row.createCell(4).apply {
-                    setCellValue(shipment.sentBy)
+                    setCellValue(shipment.destination)
                     cellStyle = dataStyle
                 }
                 row.createCell(5).apply {
-                    setCellValue("${shipment.jalaliYear}/${shipment.jalaliMonth}/${shipment.jalaliDay}")
+                    setCellValue(shipment.sentBy)
                     cellStyle = dataStyle
                 }
                 row.createCell(6).apply {
-                    setCellValue(shipment.notes)
+                    setCellValue("${shipment.jalaliYear}/${shipment.jalaliMonth}/${shipment.jalaliDay}")
                     cellStyle = dataStyle
                 }
                 row.createCell(7).apply {
-                    setCellValue(shipment.status)
+                    setCellValue(shipment.notes)
                     cellStyle = dataStyle
                 }
                 row.createCell(8).apply {
+                    setCellValue(shipment.status)
+                    cellStyle = dataStyle
+                }
+                row.createCell(9).apply {
                     setCellValue(dateFormat.format(Date(shipment.createdAt)))
                     cellStyle = dataStyle
                 }
@@ -200,8 +204,8 @@ object ExportUtil {
                     (pageWidth - margin).toFloat(), (yPos + lineHeight).toFloat(),
                     headerBgPaint
                 )
-                val colX = intArrayOf(margin + 5, margin + 40, margin + 160, margin + 260, margin + 360, margin + 430, margin + 490)
-                val colHeaders = listOf("ID", "Cargo", "Sender", "Receiver", "Date", "Status", "Notes")
+                val colX = intArrayOf(margin + 5, margin + 40, margin + 140, margin + 220, margin + 300, margin + 380, margin + 440, margin + 490)
+                val colHeaders = listOf("ID", "Cargo", "Sender", "Receiver", "Dest.", "Date", "Status", "Notes")
                 colHeaders.forEachIndexed { i, h ->
                     canvas.drawText(h, colX[i].toFloat(), (yPos + lineHeight - 5).toFloat(), headerPaint)
                 }
@@ -243,8 +247,12 @@ object ExportUtil {
                     colX(3).toFloat(), textY.toFloat(), cellPaint
                 )
                 canvas.drawText(
-                    "${shipment.jalaliYear}/${shipment.jalaliMonth}/${shipment.jalaliDay}",
+                    shipment.destination.take(10),
                     colX(4).toFloat(), textY.toFloat(), cellPaint
+                )
+                canvas.drawText(
+                    "${shipment.jalaliYear}/${shipment.jalaliMonth}/${shipment.jalaliDay}",
+                    colX(5).toFloat(), textY.toFloat(), cellPaint
                 )
 
                 // Status with color
@@ -255,11 +263,11 @@ object ExportUtil {
                 }
                 canvas.drawText(
                     shipment.status,
-                    colX(5).toFloat(), textY.toFloat(), statusPaint
+                    colX(6).toFloat(), textY.toFloat(), statusPaint
                 )
                 canvas.drawText(
                     shipment.notes.take(10),
-                    colX(6).toFloat(), textY.toFloat(), cellPaint
+                    colX(7).toFloat(), textY.toFloat(), cellPaint
                 )
 
                 // Separator line
@@ -294,11 +302,12 @@ object ExportUtil {
         return when (index) {
             0 -> margin + 5
             1 -> margin + 40
-            2 -> margin + 160
-            3 -> margin + 260
-            4 -> margin + 360
-            5 -> margin + 430
-            6 -> margin + 490
+            2 -> margin + 140
+            3 -> margin + 220
+            4 -> margin + 300
+            5 -> margin + 380
+            6 -> margin + 440
+            7 -> margin + 490
             else -> margin
         }
     }

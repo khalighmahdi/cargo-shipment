@@ -50,6 +50,7 @@ fun EditShipmentScreen(
     var cargoDescription by remember { mutableStateOf("") }
     var senderName by remember { mutableStateOf("") }
     var receiverName by remember { mutableStateOf("") }
+    var destination by remember { mutableStateOf("") }
     var sentBy by remember { mutableStateOf("") }
     var notes by remember { mutableStateOf("") }
     var selectedYear by remember { mutableStateOf(1405) }
@@ -63,6 +64,7 @@ fun EditShipmentScreen(
             cargoDescription = shipment.cargoDescription
             senderName = shipment.senderName
             receiverName = shipment.receiverName
+            destination = shipment.destination
             sentBy = shipment.sentBy
             notes = shipment.notes
             selectedYear = shipment.jalaliYear
@@ -98,6 +100,7 @@ fun EditShipmentScreen(
             OutlinedTextField(value = cargoDescription, onValueChange = { cargoDescription = it }, label = { Text("Cargo Description") }, modifier = Modifier.fillMaxWidth())
             OutlinedTextField(value = senderName, onValueChange = { senderName = it }, label = { Text("Sender Name") }, modifier = Modifier.fillMaxWidth())
             OutlinedTextField(value = receiverName, onValueChange = { receiverName = it }, label = { Text("Receiver Name") }, modifier = Modifier.fillMaxWidth())
+            OutlinedTextField(value = destination, onValueChange = { destination = it }, label = { Text("Destination") }, placeholder = { Text("e.g. Tehran, Isfahan") }, modifier = Modifier.fillMaxWidth())
             OutlinedTextField(value = sentBy, onValueChange = { sentBy = it }, label = { Text("Sent By") }, modifier = Modifier.fillMaxWidth())
             
             // Note: Simplified Date selectors for brevity in the edit screen (can reuse AddShipment logic)
@@ -111,6 +114,7 @@ fun EditShipmentScreen(
                             cargoDescription = cargoDescription,
                             senderName = senderName,
                             receiverName = receiverName,
+                            destination = destination,
                             sentBy = sentBy,
                             notes = notes,
                             jalaliYear = selectedYear,

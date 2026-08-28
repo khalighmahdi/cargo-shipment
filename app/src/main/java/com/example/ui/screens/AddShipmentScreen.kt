@@ -68,6 +68,7 @@ fun AddShipmentScreen(
     var cargoDescription by remember { mutableStateOf("") }
     var senderName by remember { mutableStateOf("") }
     var receiverName by remember { mutableStateOf("") }
+    var destination by remember { mutableStateOf("") }
     var sentBy by remember { mutableStateOf("") }
     var notes by remember { mutableStateOf("") }
 
@@ -213,6 +214,20 @@ fun AddShipmentScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .testTag("receiver_name_input"),
+                        shape = RoundedCornerShape(16.dp),
+                        singleLine = true
+                    )
+
+                    // Destination
+                    OutlinedTextField(
+                        value = destination,
+                        onValueChange = { destination = it },
+                        label = { Text("Destination") },
+                        placeholder = { Text("e.g. Tehran, Isfahan") },
+                        leadingIcon = { Icon(Icons.Default.LocalShipping, contentDescription = null) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("destination_input"),
                         shape = RoundedCornerShape(16.dp),
                         singleLine = true
                     )
@@ -631,6 +646,7 @@ fun AddShipmentScreen(
                         cargoDescription = cargoDescription,
                         senderName = senderName,
                         receiverName = receiverName,
+                        destination = destination,
                         sentBy = sentBy,
                         jalaliYear = selectedYear,
                         jalaliMonth = selectedMonth,
