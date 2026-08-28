@@ -2,7 +2,6 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.ksp)
-  alias(libs.plugins.hilt)
   alias(libs.plugins.roborazzi)
   alias(libs.plugins.secrets)
 }
@@ -15,7 +14,8 @@ android {
     applicationId = "com.aistudio.cargoshipment.kzpwhq"
     minSdk = 24
     targetSdk = 35
-    versionCode = 3
+    versionCode = 4
+    versionName = "1.3"
     versionName = "1.2"
     versionName = "1.1"
     versionName = "1.0"
@@ -79,11 +79,6 @@ dependencies {
   implementation(libs.androidx.navigation.compose)
   implementation(libs.androidx.room.ktx)
   implementation(libs.androidx.room.runtime)
-
-  // Hilt
-  implementation("com.google.dagger:hilt-android:2.52")
-  ksp("com.google.dagger:hilt-android-compiler:2.52")
-  implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
   // Ktor for Local Network Sharing
   val ktor_version = "2.3.11"

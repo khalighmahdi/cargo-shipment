@@ -3,32 +3,25 @@ package com.example.ui.viewmodel
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.data.entity.Shipment
 import com.example.data.repository.ShipmentRepository
 import com.example.util.ExportUtil
 import com.example.util.LocalServerManager
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class ShipmentViewModel @Inject constructor(
-    application: android.app.Application,
+class ShipmentViewModel(
+    application: Application,
     private val repository: ShipmentRepository,
     private val serverManager: LocalServerManager
-) : androidx.lifecycle.AndroidViewModel(application) {
+) : AndroidViewModel(application) {
 
     private val _serverIp = MutableStateFlow<String?>(null)
     val serverIp: StateFlow<String?> = _serverIp.asStateFlow()
